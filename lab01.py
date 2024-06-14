@@ -31,7 +31,12 @@ def sum_digits(y):
     >>> a
     6
     """
-    "*** YOUR CODE HERE ***"
+    total = 0 
+    while y>0:
+        digit = y%10
+        y = y//10 
+        total = total + digit 
+    return total
 
 
 
@@ -50,6 +55,14 @@ def double_eights(n):
     >>> double_eights(80808080)
     False
     """
-    "*** YOUR CODE HERE ***"
+    while n > 0:
+        digit = n % 10
+        n = n // 10
+        if digit == 8:
+            digit = n % 10
+            n = n // 10
+            if digit == 8:
+                return True
+    return False
 
 
