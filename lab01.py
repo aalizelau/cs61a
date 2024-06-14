@@ -10,7 +10,11 @@ def falling(n, k):
     >>> falling(4, 0)
     1
     """
-    "*** YOUR CODE HERE ***"
+    if k==0:
+        return 1
+    if k==1:
+        return n
+    return n * falling(n-1,k-1)
 
 
 
