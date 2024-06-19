@@ -167,7 +167,9 @@ def always_roll(n):
     """
     assert n >= 0 and n <= 10
     # BEGIN PROBLEM 6
-    "*** YOUR CODE HERE ***"
+    def strategy(score0,score1):
+        return n
+    return strategy
     # END PROBLEM 6
 
 
@@ -197,7 +199,16 @@ def is_always_roll(strategy, goal=GOAL):
     False
     """
     # BEGIN PROBLEM 7
-    "*** YOUR CODE HERE ***"
+    first_roll = strategy(0, 0)
+    score0 = 0
+    while score0 < goal:
+        score1 = 0
+        while score1 < goal:
+            if strategy(score0, score1) != first_roll:
+                return False
+            score1 += 1
+        score0 += 1
+    return True
     # END PROBLEM 7
 
 
@@ -213,7 +224,14 @@ def make_averaged(original_function, total_samples=1000):
     3.0
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    def averaged_function(*args):
+        count, total =0,0
+        while count < total_samples:
+            total = total + original_function(*args)
+            count = count +1
+        average= total/total_samples
+        return average 
+    return averaged_function
     # END PROBLEM 8
 
 
@@ -227,7 +245,15 @@ def max_scoring_num_rolls(dice=six_sided, total_samples=1000):
     1
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    strongest_dice,count,highest_average=0,1,0
+    while count <=10:
+        averaged_roll_dice = make_averaged(roll_dice,total_samples)
+        average = averaged_roll_dice(count,dice)
+        if average > highest_average:
+            highest_average = average 
+            strongest_dice = count
+        count += 1
+    return strongest_dice
     # END PROBLEM 9
 
 
@@ -271,14 +297,21 @@ def tail_strategy(score, opponent_score, threshold=12, num_rolls=6):
     points, and returns NUM_ROLLS otherwise. Ignore score and Square Swine.
     """
     # BEGIN PROBLEM 10
-    return num_rolls  # Remove this line once implemented.
+    score = tail_points(opponent_score)
+    if score >= threshold:
+        return 0 
+    return num_rolls  
     # END PROBLEM 10
 
 
 def square_strategy(score, opponent_score, threshold=12, num_rolls=6):
     """This strategy returns 0 dice when your score would increase by at least threshold."""
     # BEGIN PROBLEM 11
-    return num_rolls  # Remove this line once implemented.
+    updated_score = square_update(0, score, opponent_score)
+    increased_score = updated_score - score 
+    if increased_score >= threshold:
+        return 0 
+    return num_rolls 
     # END PROBLEM 11
 
 
@@ -288,7 +321,15 @@ def final_strategy(score, opponent_score):
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 12
-    return 6  # Remove this line once implemented.
+    updated_score = square_update(0, score, opponent_score)
+    increased_score = updated_score - score 
+
+    averaged_roll_dice = make_averaged(roll_dice,total_samples=1000)
+    average_score_6rolls = averaged_roll_dice(6,dice=six_sided)
+
+    if increased_score >= average_score_6rolls:
+        return 0 
+    return 6
     # END PROBLEM 12
 
 
