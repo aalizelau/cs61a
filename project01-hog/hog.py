@@ -325,7 +325,7 @@ def final_strategy(score, opponent_score):
     increased_score = updated_score - score 
 
     averaged_roll_dice = make_averaged(roll_dice,total_samples=1000)
-    average_score_6rolls = averaged_roll_dice(6,dice=six_sided)
+    average_score_6rolls = averaged_roll_dice(6,six_sided)
 
     if increased_score >= average_score_6rolls:
         return 0 
