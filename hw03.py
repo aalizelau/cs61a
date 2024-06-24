@@ -138,20 +138,20 @@ def count_coins(total):
     >>> check(HW_SOURCE_FILE, 'count_coins', ['While', 'For'])                                          
     True
     """
+    def helper(n, coin):
+        if n == 0:
+            return 1
+        if n < 0 or coin is None:
+            return 0
+        
+        with_current_coin = helper(n - coin, coin)
+        without_current_coin = helper(n, next_largest_coin(coin))
+        return with_current_coin + without_current_coin
 
+    return helper(total, 1)
 
 
 from operator import sub, mul
 
-def make_anonymous_factorial():
-    """Return the value of an expression that computes factorial.
 
-    >>> make_anonymous_factorial()(5)
-    120
-    >>> from construct_check import check
-    >>> # ban any assignments or recursion
-    >>> check(HW_SOURCE_FILE, 'make_anonymous_factorial', ['Assign', 'AugAssign', 'FunctionDef', 'Recursion'])
-    True
-    """
-    return 'YOUR_EXPRESSION_HERE'
 
