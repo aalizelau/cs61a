@@ -57,13 +57,13 @@ def about(subject):
     subject = [word.lower() for word in subject]
     def select(paragraph):
         paragraph = paragraph.lower()
-        paragraph = paragraph.split()
+        paragraph = remove_punctuation(paragraph)
+        paragraph_words = paragraph.split()
         for x in subject:
-            if x in paragraph:
+            if x in paragraph_words:
                 return True
         return False 
     return select 
-
     # END PROBLEM 2
 
 
@@ -93,7 +93,19 @@ def accuracy(typed, source):
     typed_words = split(typed)
     source_words = split(source)
     # BEGIN PROBLEM 3
-    "*** YOUR CODE HERE ***"
+    typed_words = split(typed)
+    source_words = split(source)
+    # BEGIN PROBLEM 3
+    correct_word =0 
+    for i in range(min(len(typed_words),len(source_words))): 
+        if typed_words[i] == source_words[i]:
+            correct_word +=1
+            
+    if typed_words == source_words: #check if both are empty list 
+        return 100.0
+    elif len(typed_words)==0:
+        return 0.0
+    return correct_word/len(typed_words) *100
     # END PROBLEM 3
 
 
