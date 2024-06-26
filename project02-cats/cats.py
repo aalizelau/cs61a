@@ -152,7 +152,16 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     'testing'
     """
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    if typed_word in word_list:
+        return typed_word
+    
+    def helper(word):
+        return diff_function(typed_word,word,limit)
+    best_match = min(word_list,key=helper)
+
+    if helper(best_match)>limit:
+        return typed_word
+    return best_match
     # END PROBLEM 5
 
 
