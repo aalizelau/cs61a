@@ -215,23 +215,21 @@ def minimum_mewtations(typed, source, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    assert False, 'Remove this line'
-    if ___________:  # Base cases should go here, you may add more base cases as needed.
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-    # Recursive cases should go below here
-    if ___________:  # Feel free to remove or add additional cases
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+    # BEGIN PROBLEM 7
+    if len(typed) == 0 or len(source) ==0:
+        len_diff= abs(len(typed)-len(source))
+        return len_diff
+    if limit<0:
+        return limit + 1
+    
+    if typed[0] == source[0]:
+        return minimum_mewtations(typed[1:], source[1:], limit)
     else:
-        add = ...  # Fill in these lines
-        remove = ...
-        substitute = ...
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+        add = minimum_mewtations(typed, source[1:], limit-1) +1
+        remove = minimum_mewtations(typed[1:], source, limit-1) +1
+        substitute = minimum_mewtations(typed[1:], source[1:], limit-1) +1
+        return min(add,remove,substitute)
+    # END PROBLEM 7
 
 
 def final_diff(typed, source, limit):
