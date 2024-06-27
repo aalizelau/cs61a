@@ -270,7 +270,17 @@ def report_progress(typed, prompt, user_id, upload):
     0.2
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    correct = 0
+    for i in range(len(typed)):
+        if typed[i] == prompt[i]:
+            correct += 1
+        else:
+            break  
+    
+    progress = correct / len(prompt)
+    message = {'id': user_id, 'progress': progress}
+    upload(message)  
+    return progress
     # END PROBLEM 8
 
 
