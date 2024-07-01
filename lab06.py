@@ -85,7 +85,18 @@ def repeated(t, k):
     2
     """
     assert k > 1
-    "*** YOUR CODE HERE ***"
+    count = 1
+    prev_elem = next(t)
+    
+    for current_elem in t:
+        if prev_elem == current_elem:
+            count += 1
+        else:
+            prev_elem = current_elem
+            count = 1
+        
+        if count == k:
+            return current_elem
 
 
 def partial_reverse(lst, start):
