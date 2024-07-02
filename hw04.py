@@ -61,7 +61,22 @@ def make_withdraw(balance, password):
     >>> type(w(10, 'l33t')) == str
     True
     """
-    "*** YOUR CODE HERE ***"
+    incorrect_pw=[]
+    def safer_bank(amount,typed_password):
+        nonlocal balance 
+        nonlocal password
+        nonlocal incorrect_pw
+        if len(incorrect_pw) ==3:
+            return "Frozen account. Attempts: " + str(incorrect_pw)
+        if typed_password == password:
+            if amount> balance:
+                return 'Insufficient funds'
+            balance = balance - amount
+            return balance
+        else:
+            incorrect_pw.append(typed_password)
+            return 'Incorrect password'
+    return safer_bank
 
 
 def repeated(t, k):
