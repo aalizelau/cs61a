@@ -144,7 +144,6 @@ class HarvesterAnt(Ant):
     name = 'Harvester'
     implemented = True
     food_cost = 2
-    init_health =1
     # OVERRIDE CLASS ATTRIBUTES HERE
 
     def action(self, gamestate):
@@ -164,7 +163,6 @@ class ThrowerAnt(Ant):
     implemented = True
     damage = 1
     food_cost = 3
-    init_health =1
     lower_bound = 0  
     upper_bound = float('inf')  
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
@@ -240,7 +238,6 @@ class FireAnt(Ant):
     name = 'Fire'
     damage = 3
     food_cost = 5
-    health=3
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 5
     implemented = True   # Change to True to view in the GUI
@@ -267,11 +264,16 @@ class FireAnt(Ant):
         if self.health <=0:
             for bee in list(current_place.bees): 
                 bee.reduce_health(self.damage)
-            self.remove_from(current_place)
         # END Problem 5
 
 # BEGIN Problem 6
-# The WallAnt class
+class WallAnt(Ant):
+    name='Wall'
+    implemented = True
+    food_cost = 4
+    
+    def __init__(self, health=4):
+        super().__init__(health)
 # END Problem 6
 
 # BEGIN Problem 7
