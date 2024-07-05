@@ -277,7 +277,26 @@ class WallAnt(Ant):
 # END Problem 6
 
 # BEGIN Problem 7
-# The HungryAnt Class
+class HungryAnt(Ant):
+    name='Hungry'
+    implemented = True
+    food_cost = 4
+    chewing_turns =3
+    
+    def __init__(self, health=1):
+        super().__init__(health)
+        self.turns_to_chew = 0
+
+    def action(self, gamestate):
+        current_place = self.place
+
+        if self.turns_to_chew==0:
+            eaten_bee= random_bee(current_place.bees)
+            if eaten_bee:
+                eaten_bee.reduce_health(eaten_bee.health)
+                self.turns_to_chew = HungryAnt.chewing_turns
+        else:
+            self.turns_to_chew -=1
 # END Problem 7
 
 
@@ -293,12 +312,16 @@ class ContainerAnt(Ant):
 
     def can_contain(self, other):
         # BEGIN Problem 8a
-        "*** YOUR CODE HERE ***"
+        if self.is_container is True and other.is_container is False:
+            if self.ant_contained == None:
+                return True
+        return False
         # END Problem 8a
 
     def store_ant(self, ant):
         # BEGIN Problem 8a
-        "*** YOUR CODE HERE ***"
+        if self.can_contain(ant):
+            self.ant_contained = ant
         # END Problem 8a
 
     def remove_ant(self, ant):
@@ -318,7 +341,8 @@ class ContainerAnt(Ant):
 
     def action(self, gamestate):
         # BEGIN Problem 8a
-        "*** YOUR CODE HERE ***"
+        if self.ant_contained is not None:
+            self.ant_contained.action (gamestate)
         # END Problem 8a
 
 
