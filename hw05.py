@@ -139,91 +139,14 @@ def store_digits(n):
     >>> cleaned = re.sub(r"#.*\\n", '', re.sub(r'"{3}[\s\S]*?"{3}', '', inspect.getsource(store_digits)))
     >>> print("Do not use str or reversed!") if any([r in cleaned for r in ["str", "reversed"]]) else None
     """
-    "*** YOUR CODE HERE ***"
-
-
-def is_bst(t):
-    """Returns True if the Tree t has the structure of a valid BST.
-
-    >>> t1 = Tree(6, [Tree(2, [Tree(1), Tree(4)]), Tree(7, [Tree(7), Tree(8)])])
-    >>> is_bst(t1)
-    True
-    >>> t2 = Tree(8, [Tree(2, [Tree(9), Tree(1)]), Tree(3, [Tree(6)]), Tree(5)])
-    >>> is_bst(t2)
-    False
-    >>> t3 = Tree(6, [Tree(2, [Tree(4), Tree(1)]), Tree(7, [Tree(7), Tree(8)])])
-    >>> is_bst(t3)
-    False
-    >>> t4 = Tree(1, [Tree(2, [Tree(3, [Tree(4)])])])
-    >>> is_bst(t4)
-    True
-    >>> t5 = Tree(1, [Tree(0, [Tree(-1, [Tree(-2)])])])
-    >>> is_bst(t5)
-    True
-    >>> t6 = Tree(1, [Tree(4, [Tree(2, [Tree(3)])])])
-    >>> is_bst(t6)
-    True
-    >>> t7 = Tree(2, [Tree(1, [Tree(5)]), Tree(4)])
-    >>> is_bst(t7)
-    False
-    """
-    "*** YOUR CODE HERE ***"
-
-
-def preorder(t):
-    """Return a list of the entries in this tree in the order that they
-    would be visited by a preorder traversal (see problem description).
-
-    >>> numbers = Tree(1, [Tree(2), Tree(3, [Tree(4), Tree(5)]), Tree(6, [Tree(7)])])
-    >>> preorder(numbers)
-    [1, 2, 3, 4, 5, 6, 7]
-    >>> preorder(Tree(2, [Tree(4, [Tree(6)])]))
-    [2, 4, 6]
-    """
-    "*** YOUR CODE HERE ***"
-
-
-def path_yielder(t, value):
-    """Yields all possible paths from the root of t to a node with the label value
-    as a list.
-
-    >>> t1 = Tree(1, [Tree(2, [Tree(3), Tree(4, [Tree(6)]), Tree(5)]), Tree(5)])
-    >>> print(t1)
-    1
-      2
-        3
-        4
-          6
-        5
-      5
-    >>> next(path_yielder(t1, 6))
-    [1, 2, 4, 6]
-    >>> path_to_5 = path_yielder(t1, 5)
-    >>> sorted(list(path_to_5))
-    [[1, 2, 5], [1, 5]]
-
-    >>> t2 = Tree(0, [Tree(2, [t1])])
-    >>> print(t2)
-    0
-      2
-        1
-          2
-            3
-            4
-              6
-            5
-          5
-    >>> path_to_2 = path_yielder(t2, 2)
-    >>> sorted(list(path_to_2))
-    [[0, 2], [0, 2, 1, 2]]
-    """
-
-    "*** YOUR CODE HERE ***"
-
-    for _______________ in _________________:
-        for _______________ in _________________:
-
-            "*** YOUR CODE HERE ***"
+    digit=[]
+    while n > 0:
+        digit.append(n%10)
+        n= n//10
+    result= Link.empty 
+    for x in digit:
+        result= Link(x,result)
+    return result 
 
 
 class Link:
